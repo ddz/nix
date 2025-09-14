@@ -21,14 +21,20 @@
         devShell = pkgs.mkShell {
           buildInputs = with pkgs; [
             emacs
+            emacsPackages.go-mode
             emacsPackages.magit
+            emacsPackages.markdown-mode
             emacsPackages.nix-mode
-            git
             gh
+            git
             gnumake
+            go
             vim
           ];
         };
+
+        # Pending https://github.com/NixOS/nixpkgs/pull/442968
+        packages.nvi = pkgs.callPackage ./pkgs/nvi/package.nix { };
 
         formatter = pkgs.nixfmt-tree;
       }
